@@ -13,9 +13,9 @@ func main() {
 		Methods("POST")
 	r.HandleFunc("/locations/{locationId}", controller.GetALocationHandler).
 		Methods("GET")
-	/*r.HandleFunc("/locations", controller.GetAllLocationHandler).
+	r.HandleFunc("/locations", controller.GetAllLocationHandler).
 		Methods("GET")
-	r.HandleFunc("/locations/{locationId}", controller.UpdateALocationHandler).
+	/*r.HandleFunc("/locations/{locationId}", controller.UpdateALocationHandler).
 		Methods("PUT")
 	r.HandleFunc("/locations/{locationId}", controller.DeleteALocationHandler).
 		Methods("DELETE")*/
