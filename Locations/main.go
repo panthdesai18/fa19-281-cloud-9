@@ -21,4 +21,3 @@ func main() {
 		Methods("DELETE")*/
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
-
