@@ -61,12 +61,6 @@ func RegisterLocationHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetALocationHandler(w http.ResponseWriter, r *http.Request) () {
 
-	/*eventID := mux.Vars(r)["locationId"]
-	for _, singleEvent := range events {
-		if singleEvent.ID == eventID {
-			json.NewEncoder(w).Encode(singleEvent)
-		}
-	}*/
 	var res model.ResponseResult
 	collection, err := db.GetDBLocationCollection()
 	if err != nil {
@@ -86,8 +80,6 @@ func GetALocationHandler(w http.ResponseWriter, r *http.Request) () {
 		json.NewEncoder(w).Encode(res)
 		return
 	}
-
-
 
 	fmt.Printf("Found multiple documents (array of pointers): %+v\n", result)
 
