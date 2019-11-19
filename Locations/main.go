@@ -16,8 +16,8 @@ func main() {
 	r.HandleFunc("/locations", controller.GetAllLocationHandler).
 		Methods("GET")
 	/*r.HandleFunc("/locations/{locationId}", controller.UpdateALocationHandler).
-		Methods("PUT")
+		Methods("PUT")*/
 	r.HandleFunc("/locations/{locationId}", controller.DeleteALocationHandler).
-		Methods("DELETE")*/
+		Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }

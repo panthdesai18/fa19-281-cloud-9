@@ -115,3 +115,35 @@ func GetAllLocationHandler(w http.ResponseWriter, r *http.Request) () {
 	json.NewEncoder(w).Encode(results)
 	return
 }
+
+func DeleteALocationHandler(w http.ResponseWriter, r *http.Request) () {
+
+	var res model.ResponseResult
+	collection, err := db.GetDBLocationCollection()
+	if err != nil {
+		//log.Fatal(err)
+		fmt.Println("collection error")
+		res.Error = err.Error()
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+	var result model.Location
+	locationId := mux.Vars(r)["locationId"]
+	err = collection.FindOne(context.TODO(), bson.D{{"locationid", locationId}}).Decode(&result)
+	if err == nil {
+		collection.DeleteOne(context.TODO(), bson.D{{"locationid", locationId}})
+		res.Result = "Document deleted successfully"
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+	if err != nil {
+		//log.Fatal(err)
+		fmt.Println("Locations document error")
+		res.Error = err.Error()
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+
+	json.NewEncoder(w).Encode(result)
+	return
+}
