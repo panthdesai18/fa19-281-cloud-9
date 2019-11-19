@@ -147,3 +147,32 @@ func DeleteALocationHandler(w http.ResponseWriter, r *http.Request) () {
 	json.NewEncoder(w).Encode(result)
 	return
 }
+
+func GetLocationsByZipcodeHandler(w http.ResponseWriter, r *http.Request) () {
+
+	var res model.ResponseResult
+	var results []*model.Location
+	collection, err := db.GetDBLocationCollection()
+	if err != nil {
+		fmt.Println("collection error")
+		res.Error = err.Error()
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+
+	zipcode := mux.Vars(r)["zipcode"]
+	cursor, err := collection.Find(context.TODO(), bson.D{{"zipcode", zipcode}})
+	for cursor.Next(context.TODO()) {
+		var result model.Location
+		err := cursor.Decode(&result)
+		if err != nil {
+			log.Fatal(err)
+		}
+		results = append(results, &result)
+		fmt.Println(result)
+	}
+
+	fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
+	json.NewEncoder(w).Encode(results)
+	return
+}
