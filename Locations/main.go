@@ -19,5 +19,7 @@ func main() {
 		Methods("PUT")*/
 	r.HandleFunc("/locations/{locationId}", controller.DeleteALocationHandler).
 		Methods("DELETE")
+	r.HandleFunc("/locations/zipcode/{zipcode}", controller.GetLocationsByZipcodeHandler).
+		Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
