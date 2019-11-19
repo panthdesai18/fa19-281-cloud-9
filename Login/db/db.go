@@ -9,7 +9,6 @@ import (
 
 func GetDBCollection() (*mongo.Collection, error) {
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://admin:admin@54.202.29.70:27017/admin?connect=direct"))
-	//fmt.Println("Connected to database")
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
