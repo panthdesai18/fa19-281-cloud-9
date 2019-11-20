@@ -5,7 +5,6 @@ type User struct {
 	FullName string `json:"fullname"`
 	Emailid   string `json:"emailid"`
 	Password  string `json:"password"`
-	Token     string `json:"token"`
 }
 
 type ResponseResult struct {
