@@ -7,6 +7,7 @@ import (
 	"fa19-281-cloud-9/Locations/model"
 	"fmt"
 	"github.com/gorilla/mux"
+	"github.com/unrolled/render"
 	"go.mongodb.org/mongo-driver/bson"
 	"io/ioutil"
 	"log"
@@ -60,60 +61,63 @@ func RegisterLocationHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func GetALocationHandler(w http.ResponseWriter, r *http.Request) () {
+func GetALocationHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var res model.ResponseResult
+		collection, err := db.GetDBLocationCollection()
+		if err != nil {
+			//log.Fatal(err)
+			fmt.Println("collection error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
+		var result model.Location
+		locationId := mux.Vars(r)["locationId"]
+		err = collection.FindOne(context.TODO(), bson.D{{"locationid", locationId}}).Decode(&result)
+		if err != nil {
+			//log.Fatal(err)
+			fmt.Println("Locations document error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
 
-	var res model.ResponseResult
-	collection, err := db.GetDBLocationCollection()
-	if err != nil {
-		//log.Fatal(err)
-		fmt.Println("collection error")
-		res.Error = err.Error()
-		json.NewEncoder(w).Encode(res)
+		fmt.Printf("Found a document: %+v\n", result)
+
+		formatter.JSON(w, http.StatusOK, result)
 		return
 	}
-	var result model.Location
-	locationId := mux.Vars(r)["locationId"]
-	err = collection.FindOne(context.TODO(), bson.D{{"locationid", locationId}}).Decode(&result)
-	if err != nil {
-		//log.Fatal(err)
-		fmt.Println("Locations document error")
-		res.Error = err.Error()
-		json.NewEncoder(w).Encode(res)
-		return
-	}
-
-	fmt.Printf("Found multiple documents (array of pointers): %+v\n", result)
-
-	json.NewEncoder(w).Encode(result)
-	return
 }
 
-func GetAllLocationHandler(w http.ResponseWriter, r *http.Request) () {
+func GetAllLocationHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var res model.ResponseResult
+		var results []*model.Location
+		collection, err := db.GetDBLocationCollection()
+		if err != nil {
+			fmt.Println("collection error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
 
-	var res model.ResponseResult
-	var results []*model.Location
-	collection, err := db.GetDBLocationCollection()
-	if err != nil {
-		fmt.Println("collection error")
-		res.Error = err.Error()
-		json.NewEncoder(w).Encode(res)
+		cursor, err := collection.Find(context.TODO(), bson.D{{}})
+		for cursor.Next(context.TODO()) {
+			var result model.Location
+			err := cursor.Decode(&result)
+			if err != nil {
+				log.Fatal(err)
+			}
+			results = append(results, &result)
+			fmt.Println(result)
+		}
+
+		fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
+		formatter.JSON(w, http.StatusOK, results)
+		//json.NewEncoder(w).Encode(results)
 		return
 	}
-
-	cursor, err := collection.Find(context.TODO(), bson.D{{}})
-	for cursor.Next(context.TODO()) {
-		var result model.Location
-		err := cursor.Decode(&result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		results = append(results, &result)
-		fmt.Println(result)
-	}
-
-	fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
-	json.NewEncoder(w).Encode(results)
-	return
 }
 
 func DeleteALocationHandler(w http.ResponseWriter, r *http.Request) () {
@@ -148,31 +152,32 @@ func DeleteALocationHandler(w http.ResponseWriter, r *http.Request) () {
 	return
 }
 
-func GetLocationsByZipcodeHandler(w http.ResponseWriter, r *http.Request) () {
+func GetLocationsByZipcodeHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var res model.ResponseResult
+		var results []*model.Location
+		collection, err := db.GetDBLocationCollection()
+		if err != nil {
+			fmt.Println("collection error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
 
-	var res model.ResponseResult
-	var results []*model.Location
-	collection, err := db.GetDBLocationCollection()
-	if err != nil {
-		fmt.Println("collection error")
-		res.Error = err.Error()
-		json.NewEncoder(w).Encode(res)
+		zipcode := mux.Vars(r)["zipcode"]
+		cursor, err := collection.Find(context.TODO(), bson.D{{"zipcode", zipcode}})
+		for cursor.Next(context.TODO()) {
+			var result model.Location
+			err := cursor.Decode(&result)
+			if err != nil {
+				log.Fatal(err)
+			}
+			results = append(results, &result)
+			fmt.Println(result)
+		}
+
+		fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
+		formatter.JSON(w, http.StatusOK, results)
 		return
 	}
-
-	zipcode := mux.Vars(r)["zipcode"]
-	cursor, err := collection.Find(context.TODO(), bson.D{{"zipcode", zipcode}})
-	for cursor.Next(context.TODO()) {
-		var result model.Location
-		err := cursor.Decode(&result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		results = append(results, &result)
-		fmt.Println(result)
-	}
-
-	fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
-	json.NewEncoder(w).Encode(results)
-	return
 }
