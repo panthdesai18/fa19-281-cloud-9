@@ -108,6 +108,76 @@ func GetOrderByUserId(response http.ResponseWriter, request *http.Request) {
 	}
 	json.NewEncoder(response).Encode(order)
 }
+func RemoveOrder(response http.ResponseWriter, request *http.Request) {
+
+	fmt.Println("Inside  RemoveOrder function")
+
+	tlsConfig := &tls.Config{}
+
+	dialInfo := &mgo.DialInfo{
+		Addrs: []string{"menu-shard-00-02-mgoh4.mongodb.net:27017",
+			"menu-shard-00-01-mgoh4.mongodb.net:27017",
+			"menu-shard-00-00-mgoh4.mongodb.net:27017"},
+		Database: "admin",
+		Username: "m_udit",
+		Password: "cmpe281",
+	}
+	dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {
+		conn, err := tls.Dial("tcp", addr.String(), tlsConfig)
+		return conn, err
+	}
+	session, err := mgo.DialWithInfo(dialInfo)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+	c := session.DB(mongodb_database).C(mongodb_collection)
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	id := (params["id"])
+	fmt.Println(id)
+	err = c.Remove(bson.M{"UserId": id})
+	if err != nil {
+		fmt.Println("Can not insert")
+	}
+	json.NewEncoder(response).Encode("Deleted Record")
+}
+func GetAllOrders(response http.ResponseWriter, request *http.Request) {
+
+	fmt.Println("Inside get assignemts function")
+
+	tlsConfig := &tls.Config{}
+
+	dialInfo := &mgo.DialInfo{
+		Addrs: []string{"menu-shard-00-02-mgoh4.mongodb.net:27017",
+			"menu-shard-00-01-mgoh4.mongodb.net:27017",
+			"menu-shard-00-00-mgoh4.mongodb.net:27017"},
+		Database: "admin",
+		Username: "m_udit",
+		Password: "cmpe281",
+	}
+	dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {
+		conn, err := tls.Dial("tcp", addr.String(), tlsConfig)
+		return conn, err
+	}
+	session, err := mgo.DialWithInfo(dialInfo)
+
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB(mongodb_database).C(mongodb_collection)
+	var order []Order
+	response.Header().Set("content-type", "application/json")
+	err = c.Find(bson.M{}).All(&order)
+	if err != nil {
+		fmt.Println("Can not insert")
+	}
+	json.NewEncoder(response).Encode(order)
+}
 
 type smtpServer struct {
 	host string
@@ -125,5 +195,7 @@ func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/order", CreateOrderEndpoint).Methods("POST")
 	router.HandleFunc("/order/{id}", GetOrderByUserId).Methods("GET")
+	router.HandleFunc("/order/{id}", RemoveOrder).Methods("DELETE")
+	router.HandleFunc("/orders", GetAllOrders).Methods("GET")
 	http.ListenAndServe(":3000", router)
 }
