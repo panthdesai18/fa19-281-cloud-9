@@ -5,13 +5,13 @@ import (
 	"Login/types"
 	"context"
 	"encoding/json"
-	"github.com/dgrijalva/jwt-go"
+	"fmt"
+	"github.com/unrolled/render"
+	"go.mongodb.org/mongo-driver/bson"
+	"golang.org/x/crypto/bcrypt"
 	"io/ioutil"
 	"log"
 	"net/http"
-
-	"go.mongodb.org/mongo-driver/bson"
-	"golang.org/x/crypto/bcrypt"
 )
 
 func SignupHandler(w http.ResponseWriter, r *http.Request) {
@@ -103,21 +103,36 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"username":  result.Username,
-		"fullname": result.FullName,
-	})
-
-	tokenString, err := token.SignedString([]byte("secret"))
-
-	if err != nil {
-		res.Error = "Error while generating token,Try again"
-		json.NewEncoder(w).Encode(res)
-		return
-	}
-    
-	result.Token = tokenString
+	//fmt.Println("Login successful!")
 	result.Password = ""
 
 	json.NewEncoder(w).Encode(result)
+}
+
+func UsersHandler(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var res types.ResponseResult
+		var results []*types.User
+		collection, err := db.GetDBCollection()
+		if err != nil {
+			fmt.Println("Connection Error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
+		cursor, err := collection.Find(context.TODO(), bson.D{})
+		for cursor.Next(context.TODO()) {
+			var result types.User
+			err := cursor.Decode(&result)
+			if err != nil {
+				log.Fatal(err)
+			}
+			results = append(results, &result)
+			fmt.Println(result)
+		}
+
+		fmt.Printf("Found multiple documents: %+v\n", results)
+		formatter.JSON(w, http.StatusOK, results)
+		return
+	}
 }
