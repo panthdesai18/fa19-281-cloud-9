@@ -10,7 +10,7 @@ import (
 )
 
 
-func GetDBLocationCollection() (*mongo.Collection, error){
+func GetPayments() (*mongo.Collection, error){
 
 	//clientOptions := options.Client().ApplyURI("mongodb://admin:admin@54.187.23.147:27017/admin?connect=direct")
 	//client, err := mongo.Connect(context.TODO(), clientOptions)
