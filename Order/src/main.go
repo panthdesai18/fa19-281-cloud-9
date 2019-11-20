@@ -13,14 +13,15 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 var client *mongo.Client
 var mongodb_server = "mongodb+srv://cmpe281:@cmpe281-ievds.mongodb.net/test?retryWrites=true&w=majority"
 var mongodb_server_1 = "52.37.128.85:27017"
 
-// var mongodb_database = "Menu"
-// var mongodb_collection = "menu"
+var mongodb_database = "Menu"
+var mongodb_collection = "menu"
 
 type Order struct {
 	OrderId     string   `json:"OrderId,omitempty" bson:"OrderId,omitempty"`
@@ -69,6 +70,45 @@ func CreateOrderEndpoint(response http.ResponseWriter, request *http.Request) {
 	json.NewEncoder(response).Encode("OK")
 }
 
+func GetOrderByUserId(response http.ResponseWriter, request *http.Request) {
+
+	fmt.Println("Inside get assignemts function")
+
+	tlsConfig := &tls.Config{}
+
+	dialInfo := &mgo.DialInfo{
+		Addrs: []string{"menu-shard-00-02-mgoh4.mongodb.net:27017",
+			"menu-shard-00-01-mgoh4.mongodb.net:27017",
+			"menu-shard-00-00-mgoh4.mongodb.net:27017"},
+		Database: "admin",
+		Username: "m_udit",
+		Password: "cmpe281",
+	}
+	dialInfo.DialServer = func(addr *mgo.ServerAddr) (net.Conn, error) {
+		conn, err := tls.Dial("tcp", addr.String(), tlsConfig)
+		return conn, err
+	}
+	session, err := mgo.DialWithInfo(dialInfo)
+	if err != nil {
+		panic(err)
+	}
+	defer session.Close()
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB(mongodb_database).C(mongodb_collection)
+	var order []Order
+
+	response.Header().Set("content-type", "application/json")
+	params := mux.Vars(request)
+	id := (params["id"])
+	fmt.Println(id)
+	err = c.Find(bson.M{"UserId": id}).All(&order)
+	if err != nil {
+		fmt.Println("Can not insert")
+	}
+	json.NewEncoder(response).Encode(order)
+}
+
 type smtpServer struct {
 	host string
 	port string
@@ -84,6 +124,6 @@ func main() {
 	fmt.Println("Mongo has been Connected")
 	router := mux.NewRouter()
 	router.HandleFunc("/order", CreateOrderEndpoint).Methods("POST")
-
+	router.HandleFunc("/order/{id}", GetOrderByUserId).Methods("GET")
 	http.ListenAndServe(":3000", router)
 }
