@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
 	"github.com/unrolled/render"
 	"go.mongodb.org/mongo-driver/bson"
 	"golang.org/x/crypto/bcrypt"
@@ -103,6 +104,20 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"username":  result.Username,
+		"fullname": result.FullName,
+	})
+
+	tokenString, err := token.SignedString([]byte("secret"))
+
+	if err != nil {
+		res.Error = "Error while generating token,Try again"
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+
+	result.Token = tokenString
 	//fmt.Println("Login successful!")
 	result.Password = ""
 
