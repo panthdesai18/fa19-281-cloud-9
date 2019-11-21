@@ -141,6 +141,7 @@ func GetOneUser(formatter *render.Render) http.HandlerFunc {
 		var res types.ResponseResult
 		collection, err := db.GetDBCollection()
 		if err != nil {
+			//log.Fatal(err)
 			fmt.Println("Connection Error")
 			res.Error = err.Error()
 			json.NewEncoder(w).Encode(res)
@@ -150,6 +151,7 @@ func GetOneUser(formatter *render.Render) http.HandlerFunc {
 		username := mux.Vars(r)["username"]
 		err = collection.FindOne(context.TODO(), bson.D{{"username", username}}).Decode(&result)
 		if err != nil {
+			//log.Fatal(err)
 			fmt.Println("Users document error")
 			res.Error = err.Error()
 			json.NewEncoder(w).Encode(res)
@@ -161,4 +163,35 @@ func GetOneUser(formatter *render.Render) http.HandlerFunc {
 		formatter.JSON(w, http.StatusOK, result)
 		return
 	}
+}
+
+func DeleteAUser(w http.ResponseWriter, r *http.Request) () {
+	var res types.ResponseResult
+	collection, err := db.GetDBCollection()
+	if err != nil {
+		//log.Fatal(err)
+		fmt.Println("collection error")
+		res.Error = err.Error()
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+	var result types.User
+	username := mux.Vars(r)["username"]
+	err = collection.FindOne(context.TODO(), bson.D{{"username", username}}).Decode(&result)
+	if err == nil {
+		collection.DeleteOne(context.TODO(), bson.D{{"username", username}})
+		res.Result = "User deleted successfully"
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+	if err != nil {
+		//log.Fatal(err)
+		fmt.Println("Users document error")
+		res.Error = err.Error()
+		json.NewEncoder(w).Encode(res)
+		return
+	}
+
+	json.NewEncoder(w).Encode(result)
+	return
 }
