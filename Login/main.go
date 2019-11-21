@@ -19,6 +19,8 @@ func main() {
 		Methods("POST")
 	r.HandleFunc("/users", server.UsersHandler(formatter)).
 		Methods("GET")
+	r.HandleFunc("/user/{username}", server.GetOneUser(formatter)).
+		Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
