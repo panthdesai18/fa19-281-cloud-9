@@ -26,7 +26,7 @@ class Login extends Component {
             Password : this.state.password
         }
         try{
-            const connectionReqResponse = await axios.post('http://localhost:3000/login', loginData)
+            const connectionReqResponse = await axios.post('http://login-env.u67gpznbsg.us-east-1.elasticbeanstalk.com/login', loginData)
             if (connectionReqResponse.status === 201){
                 alert("Login successful!");
                 let user = {
@@ -62,7 +62,7 @@ class Login extends Component {
                             <label for="email" className="signUpLabel">
                                 Email Id or Username
                             </label>
-                            <input type="email" name = "email" onChange = {this.onChangeLogin} class="signUpInput"/>
+                            <input type="text" name = "email" onChange = {this.onChangeLogin} class="signUpInput"/>
                         </div>
 
                         <div className = "signUpDiv">
