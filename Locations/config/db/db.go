@@ -13,7 +13,7 @@ func GetDBLocationCollection() (*mongo.Collection, error){
 
 	//clientOptions := options.Client().ApplyURI("mongodb://admin:admin@54.71.153.203:27017/admin?connect=direct")
 	//client, err := mongo.Connect(context.TODO(), clientOptions)
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://admin:admin@54.71.153.203:27017/admin?connect=direct"))
+	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://admin:admin@54.188.63.231:27017/admin?connect=direct"))
 	// Connect the mongo client to the MongoDB server
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
