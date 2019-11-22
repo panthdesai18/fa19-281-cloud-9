@@ -2,28 +2,29 @@
 .signupbox {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px 0px, rgba(0, 0, 0, 0.1) 0px 0px 0px 0px inset;
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
-    height: 550px;
+    color: rgb(0, 0, 0);
+    height: 580px;
     text-decoration: none solid rgb(41, 55, 61);
     text-size-adjust: 100%;
     width: 400px;
-    column-rule-color: rgb(41, 55, 61);
-    caret-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
+    caret-color: rgb(0, 0, 0);
     background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
-    border: 0px none rgb(41, 55, 61);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
     margin: 15% 35%;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }/*#DIV_2*/
 
 .signupheading{
     border-bottom: 2px solid silver;
     font-size: 28px;
     text-align: center;
-    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: rgb(255, 255, 255);
     background: rgb(95, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;
-    font-family: Veneer;
+    font-family: Verdana;
 
 
 }
@@ -33,46 +34,46 @@
     color: rgb(95, 0, 0);
     text-decoration: none solid rgb(255, 255, 255);
     text-size-adjust: 100%;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 0px 0px;
     transform-origin: 0px 0px;
-    caret-color: rgb(41, 55, 61);
-    border: 0px none rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }
 
 .signUpDiv{
     box-sizing: border-box;
     clear: both;
-    color: rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
     height: 55px;
-    text-decoration: none solid rgb(41, 55, 61);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 291px;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 145.5px 27.5px;
     transform-origin: 145.5px 27.5px;
-    caret-color: rgb(41, 55, 61);
-    border: 0px none rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
     margin: 20px 0px 0px;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
     margin: 10%;
 }
 
 .signUpInput{
-    color: rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
     height: 30px;
-    text-decoration: none solid rgb(41, 55, 61);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 300px;
-    column-rule-color: rgb(41, 55, 61);
-    caret-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
+    caret-color: rgb(0, 0, 0);
     border: 1px solid rgb(192, 192, 192);
     border-radius: 3px 3px 3px 3px;
     font: normal normal 400 normal 20px / normal ropa_sansregular;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
     padding: 5px;
 }
 
@@ -103,107 +104,107 @@
 .signup {
     background-position: 0px 0px;
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
     height: 20px;
-    text-decoration: none solid rgb(41, 55, 61);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 978px;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 489px 79px;
     transform-origin: 489px 79px;
-    caret-color: rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0) none repeat scroll 0px 0px / auto padding-box border-box;
-    border: 0px none rgb(41, 55, 61);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
     margin: 0px 0px 25px;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }
 
 .signupNav {
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
     height: 0px;
-    text-decoration: none solid rgb(41, 55, 61);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 978px;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 489px 0px;
     transform-origin: 489px 0px;
-    caret-color: rgb(41, 55, 61);
-    border: 0px none rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }/*#DIV_2, #DIV_10*/
 
 .signupSpan {
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
-    text-decoration: none solid rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 0px 0px;
     transform-origin: 0px 0px;
-    caret-color: rgb(41, 55, 61);
-    border: 0px none rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }/*#SPAN_3*/
 
 #A_4 {
     background-position: 0px 0px;
     box-sizing: border-box;
-    color: rgb(114, 24, 42);
+    color: rgb(95, 0, 0);
     display: block;
     float: left;
     height: 82px;
-    text-decoration: none solid rgb(114, 24, 42);
+    text-decoration: none solid rgb(95, 0, 0);
     text-size-adjust: 100%;
     width: 157px;
-    column-rule-color: rgb(114, 24, 42);
+    column-rule-color: rgb(95, 0, 0);
     perspective-origin: 78.5px 41px;
     transform-origin: 78.5px 41px;
-    caret-color: rgb(114, 24, 42);
+    caret-color: rgb(95, 0, 0);
     background: rgba(0, 0, 0, 0) url("https://static.olocdn.net/img/thecounter/logo_2.png") no-repeat scroll 0px 0px / contain padding-box border-box;
-    border: 0px none rgb(114, 24, 42);
+    border: 0px none rgb(95, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
     margin: 15px 20px;
-    outline: rgb(114, 24, 42) none 0px;
+    outline: rgb(95, 0, 0) none 0px;
 }/*#A_4*/
 
 .loginbox {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px 0px, rgba(0, 0, 0, 0.1) 0px 0px 0px 0px inset;
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
-    height: 370px;
-    text-decoration: none solid rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
+    height: 380px;
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 400px;
-    column-rule-color: rgb(41, 55, 61);
-    caret-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
+    caret-color: rgb(0, 0, 0);
     background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box;
-    border: 0px none rgb(41, 55, 61);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
     margin: 15% 35%;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
 }/*#DIV_2*/
 
 
 #DIV_3 {
     background-position: 0px 0px;
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
+    color: rgb(0, 0, 0);
     height: 510px;
-    text-decoration: none solid rgb(41, 55, 61);
+    text-decoration: none solid rgb(0, 0, 0);
     text-size-adjust: 100%;
     width: 978px;
-    column-rule-color: rgb(41, 55, 61);
+    column-rule-color: rgb(0, 0, 0);
     perspective-origin: 489px 255px;
     transform-origin: 489px 255px;
-    caret-color: rgb(41, 55, 61);
+    caret-color: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0) url("https://static.olocdn.net/img/thecounter/hero/desktop.png") no-repeat scroll 0px 0px / auto padding-box border-box;
-    border: 0px none rgb(41, 55, 61);
+    border: 0px none rgb(0, 0, 0);
     font: normal normal 400 normal 18px / normal ropa_sansregular;
-    outline: rgb(41, 55, 61) none 0px;
+    outline: rgb(0, 0, 0) none 0px;
     margin: 10% 18%;
 }/*#DIV_3*/
 
