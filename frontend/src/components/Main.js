@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import SignUp from './Login/SignUp'
+import Login from './Login/Login'
 import LandingPage from './LandingPage/LandingPage'
 import Menu from './Menu/Menu';
 import Payments from './Payments/Payments';
@@ -12,8 +13,7 @@ class Main extends Component {
         return(
             <div>
              <Route path="/signup" component={SignUp}/>
-             <!--<Route path="/login" component={Login}/>
-             <Route path="/adminlogin" component={AdminLogin}/>-->
+             <Route path="/login" component={Login}/>
              <Route path="/home" component={LandingPage}/>
              <Route path="/menu" component={Menu}/>
              <Route path="/payments" component={Payments}/>
