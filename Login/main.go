@@ -21,6 +21,8 @@ func main() {
 		Methods("GET")
 	r.HandleFunc("/user/{username}", server.GetOneUser(formatter)).
 		Methods("GET")
+	r.HandleFunc("/user/{fullname}", server.GetOneUserByFullName(formatter)).
+		Methods("GET")
 	r.HandleFunc("/user/{username}", server.DeleteAUser).
 		Methods("DELETE")
 
