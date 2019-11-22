@@ -17,11 +17,12 @@
 }/*#DIV_2*/
 
 .signupheading{
-    border-bottom: 1px solid silver;
+    border-bottom: 2px solid silver;
     font-size: 28px;
     text-align: center;
     padding-bottom: 5px;
-    color: #29373d;
+    color: rgb(255, 255, 255);
+    background: rgb(95, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;
     font-family: Veneer;
 
 
@@ -29,8 +30,8 @@
 
 .signUpLabel{
     box-sizing: border-box;
-    color: rgb(41, 55, 61);
-    text-decoration: none solid rgb(41, 55, 61);
+    color: rgb(95, 0, 0);
+    text-decoration: none solid rgb(255, 255, 255);
     text-size-adjust: 100%;
     column-rule-color: rgb(41, 55, 61);
     perspective-origin: 0px 0px;
@@ -91,8 +92,8 @@
     perspective-origin: 150px 20px;
     transform-origin: 150px 20px;
     caret-color: rgb(255, 255, 255);
-    background: rgb(114, 24, 42) none repeat scroll 0% 0% / auto padding-box border-box;
-    border: 1px solid rgb(72, 15, 26);
+    background: rgb(95, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box;
+    border: 1px solid rgb(95, 0, 0);
     border-radius: 4px 4px 4px 4px;
     font: normal normal 400 normal 28px / normal ropa_sansregular;
     outline: rgb(255, 255, 255) none 0px;
@@ -173,7 +174,7 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 4px 0px, rgba(0, 0, 0, 0.1) 0px 0px 0px 0px inset;
     box-sizing: border-box;
     color: rgb(41, 55, 61);
-    height: 380px;
+    height: 370px;
     text-decoration: none solid rgb(41, 55, 61);
     text-size-adjust: 100%;
     width: 400px;
