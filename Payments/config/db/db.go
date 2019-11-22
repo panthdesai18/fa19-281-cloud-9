@@ -10,12 +10,9 @@ import (
 )
 
 
-func GetPayments() (*mongo.Collection, error){
+func GetPaymentCollection() (*mongo.Collection, error){
 
-	//clientOptions := options.Client().ApplyURI("mongodb://admin:admin@54.187.23.147:27017/admin?connect=direct")
-	//client, err := mongo.Connect(context.TODO(), clientOptions)
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://admin:admin@54.187.23.147:27017/admin?connect=direct"))
-	// Connect the mongo client to the MongoDB server
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 
@@ -24,8 +21,6 @@ func GetPayments() (*mongo.Collection, error){
 		fmt.Println("error")
 		return nil, err
 	}
-
-	// Check the connection
 	err = client.Ping(context.TODO(), nil)
 
 	if err != nil {
@@ -35,7 +30,7 @@ func GetPayments() (*mongo.Collection, error){
 	}
 
 	fmt.Println("Connected to MongoDB!")
-	collection := client.Database("restaurant").Collection("locations")
+	collection := client.Database("restaurant").Collection("payments")
 
 	return collection, nil
 }
