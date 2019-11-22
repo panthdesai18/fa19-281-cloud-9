@@ -190,6 +190,33 @@ func GetOneUserByFullName(formatter *render.Render) http.HandlerFunc {
 	}
 }
 
+func GetOneUserByEmailId(formatter *render.Render) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var res types.ResponseResult
+		collection, err := db.GetDBCollection()
+		if err != nil {
+			fmt.Println("Connection Error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
+		var result types.User
+		emailid := mux.Vars(r)["emailid"]
+		err = collection.FindOne(context.TODO(), bson.D{{"emailid", emailid}}).Decode(&result)
+		if err != nil {
+			fmt.Println("Users document error")
+			res.Error = err.Error()
+			json.NewEncoder(w).Encode(res)
+			return
+		}
+
+		fmt.Printf("Found a document: %+v\n", result)
+
+		formatter.JSON(w, http.StatusOK, result)
+		return
+	}
+}
+
 func DeleteAUser(w http.ResponseWriter, r *http.Request) () {
 	var res types.ResponseResult
 	collection, err := db.GetDBCollection()
