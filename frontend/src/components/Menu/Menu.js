@@ -23,48 +23,19 @@ class Menu extends Component {
             price: "",
             item:[],
             total : 0,
+            itemname: []
         }
         this.handleclick = this.handleclick.bind(this);
-        //this.addToCart = this.addToCart.bind(this)
+       
     }
 
-    addToCart(e1, e2, e3, e4, e5) {
-        var user = JSON.parse(localStorage.getItem('user'));
-        console.log(user.id);
-        var headers = new Headers();
-        //prevent page from refresh
-        //e.preventDefault();
-        const data = {
-            UserId: 1, //LOCAL STORAGE
-            ItemId: e1,
-            ItemName: e2,
-            Price: e3,
-            Description: e4,
-            ItemType: e5
-        }
-        console.log("dataa", data)
-
-        //set the with credentials to true
-        //axios.defaults.withCredentials = true;
-
-        axios.post(hostnameOrder, data)
-            .then(response => {
-                console.log("Status Code : ", response.status);
-                console.log("Data Sent ", response.data);
-                if (response.status === 200) {
-                    swal("Item Added To The Cart", "", "success")
-                } else {
-                    swal("Apologies, the item could not be added.", "Please Try Again!", "error")
-                }
-
-            });
-    }
 
     handleclick = (e, name, price) => {
          this.state.item = [name, price]
          console.log(this.state.item)
         this.state.itemdetail.push(this.state.item);
-        console.log("state",this.state.itemdetail, this.state.total)
+        this.state.itemname.push(name);
+        console.log("state",this.state.itemdetail, this.state.total, this.state.itemname)
     }
 
     componentDidMount() {
@@ -127,7 +98,8 @@ class Menu extends Component {
                                                         pathname: "/burgerOrder",
                                                         state: {
                                                             itemdetail: this.state.itemdetail,
-                                                            total: this.state.total
+                                                            total: this.state.total,
+                                                            itemname: this.state.itemname
                                                         }
                                                     })
                                                 } catch (e) { }
