@@ -17,7 +17,7 @@ func main() {
 		Methods("POST")
 	r.HandleFunc("/login", server.LoginHandler).
 		Methods("POST")
-	r.HandleFunc("/users", server.UsersHandler(formatter)).
+	r.HandleFunc("/users", server.GetAllUsers(formatter)).
 		Methods("GET")
 	r.HandleFunc("/user/{username}", server.GetOneUser(formatter)).
 		Methods("GET")
