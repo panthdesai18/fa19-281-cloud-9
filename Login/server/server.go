@@ -141,7 +141,6 @@ func GetOneUser(formatter *render.Render) http.HandlerFunc {
 		var res types.ResponseResult
 		collection, err := db.GetDBCollection()
 		if err != nil {
-			//log.Fatal(err)
 			fmt.Println("Connection Error")
 			res.Error = err.Error()
 			json.NewEncoder(w).Encode(res)
@@ -151,7 +150,6 @@ func GetOneUser(formatter *render.Render) http.HandlerFunc {
 		username := mux.Vars(r)["username"]
 		err = collection.FindOne(context.TODO(), bson.D{{"username", username}}).Decode(&result)
 		if err != nil {
-			//log.Fatal(err)
 			fmt.Println("Users document error")
 			res.Error = err.Error()
 			json.NewEncoder(w).Encode(res)
@@ -169,7 +167,6 @@ func DeleteAUser(w http.ResponseWriter, r *http.Request) () {
 	var res types.ResponseResult
 	collection, err := db.GetDBCollection()
 	if err != nil {
-		//log.Fatal(err)
 		fmt.Println("collection error")
 		res.Error = err.Error()
 		json.NewEncoder(w).Encode(res)
@@ -185,7 +182,6 @@ func DeleteAUser(w http.ResponseWriter, r *http.Request) () {
 		return
 	}
 	if err != nil {
-		//log.Fatal(err)
 		fmt.Println("Users document error")
 		res.Error = err.Error()
 		json.NewEncoder(w).Encode(res)
