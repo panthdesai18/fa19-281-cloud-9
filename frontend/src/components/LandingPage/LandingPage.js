@@ -17,6 +17,7 @@ class LandingPage extends Component {
         <li><Link to="/home"><font color = "black" face="Impact" size="4">HOME</font></Link></li>
       <li><Link to="/signup"><font color = "black" face="Impact" size="4">CREATE ACCOUNT</font></Link></li>
       <li><Link to="/login"><font color = "black" face="Impact" size="4 ">SIGN IN</font></Link></li>
+        <li><Link to="/adminlogin"><font color = "black" face="Impact" size="4 ">ADMIN SIGN IN</font></Link></li>
     </ul>
   </div>
 </div>  
