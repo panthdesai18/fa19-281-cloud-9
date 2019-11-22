@@ -108,7 +108,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(result)
 }
 
-func UsersHandler(formatter *render.Render) http.HandlerFunc {
+func GetAllUsers(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var res types.ResponseResult
 		var results []*types.User
