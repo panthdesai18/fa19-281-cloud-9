@@ -5,7 +5,7 @@ import Login from './Login/Login'
 import AdminLogin from './Login/AdminLogin'
 import LandingPage from './LandingPage/LandingPage'
 import Menu from './Menu/Menu';
-
+import Locations from './Locations/Locations';
 class Main extends Component {
     render(){
         return(
@@ -15,6 +15,8 @@ class Main extends Component {
              <Route path="/adminlogin" component={AdminLogin}/>
              <Route path="/home" component={LandingPage}/>
              <Route path="/menu" component={Menu}/>
+             <Route path="/locations" component={Locations}/>
+
             </div>
         )
 
