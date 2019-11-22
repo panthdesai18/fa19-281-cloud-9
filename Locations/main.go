@@ -25,5 +25,5 @@ func main() {
 		Methods("DELETE")
 	r.HandleFunc("/locations/zipcode/{zipcode}", controller.GetLocationsByZipcodeHandler(formatter)).
 		Methods("GET")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":3000", r))
 }
