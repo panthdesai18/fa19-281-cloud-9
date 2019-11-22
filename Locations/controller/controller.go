@@ -97,6 +97,7 @@ func GetAllLocationHandler(formatter *render.Render) http.HandlerFunc {
 		collection, err := db.GetDBLocationCollection()
 		if err != nil {
 			fmt.Println("collection error")
+			formatter.JSON(w, http.StatusInternalServerError, "Internal Server Error")
 			res.Error = err.Error()
 			json.NewEncoder(w).Encode(res)
 			return
@@ -112,9 +113,12 @@ func GetAllLocationHandler(formatter *render.Render) http.HandlerFunc {
 			results = append(results, &result)
 			fmt.Println(result)
 		}
-
+		if results == nil || len(results)<=0 {
+			formatter.JSON(w, http.StatusNotFound, "No restaurants found at the chosen location")
+		} else {
+			formatter.JSON(w, http.StatusOK, results)
+		}
 		fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
-		formatter.JSON(w, http.StatusOK, results)
 		//json.NewEncoder(w).Encode(results)
 		return
 	}
