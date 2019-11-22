@@ -25,7 +25,7 @@ class AdminLogin extends Component {
             Password : this.state.password
         }
         try{
-            const connectionReqResponse = await axios.post('http://localhost:3000/adminlogin', loginData)
+            const connectionReqResponse = await axios.post('http://login-env.u67gpznbsg.us-east-1.elasticbeanstalk.com/adminlogin', loginData)
             if (connectionReqResponse.status === 201){
                 alert("Login successful!");
                 let user = {
