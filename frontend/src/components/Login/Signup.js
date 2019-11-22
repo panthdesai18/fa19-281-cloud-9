@@ -52,7 +52,7 @@ class SignUp extends Component {
                 </div>
 
                 <div className="signupbox">
-                    <h1 className = "signupheading">CREATE ACCOUNT</h1>
+                    <h1 className = "signupheading">SIGNUP</h1>
                     <center>Already have an account? <Link to="/login"> LOGIN!</Link></center>
                     <form onSubmit = {this.onSubmit}>
                         <div className = "signUpDiv">
@@ -84,7 +84,7 @@ class SignUp extends Component {
                         </div>
 
                         <div className = "signUpDiv">
-                            <input type="submit" className="signUpButton" value="Create Account"/>
+                            <input type="submit" className="signUpButton" value="Sign Up"/>
                         </div>
                     </form>
                 </div>

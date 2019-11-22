@@ -56,7 +56,7 @@ class Login extends Component {
 
                 <div className="loginbox">
                     <h1 className = "signupheading">LOGIN</h1>
-                    <center>Don't have an account?<Link to="/signup"> Create One!</Link> </center>
+                    <center>Don't have an account?<Link to="/signup"> Sign Up Now!</Link> </center>
                     <form onSubmit = {this.onSubmit}>
                         <div className = "signUpDiv">
                             <label for="email" className="signUpLabel">
