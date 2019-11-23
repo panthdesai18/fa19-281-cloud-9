@@ -105,22 +105,6 @@
          "email": "abc@gmail.com"
          },
         
- * #### GET/GetMenuItemsEndpoint
-        
-        GET Api for viewing all the Menu Items
-        Accept: application/json
-        
-        Response:
-        {
-        "_id": "5dd648039a554828c30a11ae",
-        "ItemId": "01",
-        "ItemName": "Burgers",
-        "Price": "07",
-        "Description": "burger it is",
-        "ItemType": "main_dish"
-    }
-    - 200 created
-        
  * #### Get/locations/{locationId}
         
         GET A Location by LocationID
@@ -248,3 +232,69 @@
   
         Response:
         {"error":"","result":"User deleted successfully"}
+
+* ### Order Service:
+placeOrder/Post
+orders/GET
+getUserOrder/GET
+removeOrder/DELETE
+
+* #### POST/placeOrder
+        
+        POST Api for confirming the order items from cart
+        Accept: application/json
+        
+        Body:
+        {
+        "UserId": "raj",
+        "OrderStatus": "placed",
+        "Items": [
+               "CheeseBurger"
+        ],
+        "TotalAmount": "6"
+        }
+        -200 created
+
+ * #### GET/orders
+        
+        Get All orders of all the users
+        Accept: application/json
+        
+        Response:
+        {
+        "_id": "5dd8cab8a7e8aa8a540e0d6",
+        "UserId": "raj",
+        "OrderStatus": "placed",
+        "Items": [
+               "CheeseBurger"
+        ],
+        "TotalAmount": "6"
+        }
+
+        - 200 okay
+        
+ * #### GET/getUserOrder/{id}
+        
+        get orders of a particular user
+        Accept: application/json
+        
+        Response:
+        {
+        "_id": "5dd8cab8a7e8aa8a540e0d6",
+        "UserId": "raj",
+        "OrderStatus": "placed",
+        "Items": [
+               "CheeseBurger"
+        ],
+        "TotalAmount": "6"
+        }
+
+        -200 okay
+        
+ * #### Delete/removeOrder/{id}
+        
+        delete api for according to the user id
+        Accept: application/json
+        
+        Response:
+        -200 deleted
