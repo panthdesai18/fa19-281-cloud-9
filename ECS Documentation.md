@@ -1,6 +1,6 @@
 ## Amazon  Elastic Container Service(ECS) Documentation:
 
-* I have used Azure Kubernetes Service to deploy my menu backend.Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster.
+* I have used Elastic Container Service to deploy my menu backend.Amazon Elastic Container Service (Amazon ECS) is a highly scalable, fast, container management service that makes it easy to run, stop, and manage Docker containers on a cluster.
 
 ### Refrence Link: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html
 
