@@ -84,6 +84,30 @@
         - 200 created
         - 400 Invalid request
 
+* #### Get/locations/zipcode/{zipcode}
+
+	GET A Location by zipcode
+	Accept: application/json
+ 
+ 	Response:
+ 	[
+  	{
+    	"locationId": "345689",
+    	"locationName": "Santa Clara",
+    	"address": "4 south",
+    	"zipcode": "12342",
+    	"city": "san jose",
+    	"state": "California",
+    	"country": "US",
+    	"latitude": "1234567",
+    	"longitude": "7654321",
+    	"phone": "1234567890",
+    	"email": "abc@gmail.com"
+  	}
+	]
+	- 200 created
+	- 400 Invalid request
+
  * #### Get/locations
         
         GET All Locations 
