@@ -8,7 +8,7 @@ class Login extends Component {
     constructor(props){
         super(props);
         this.state = {
-            email : "",
+            uname : "",
             password : ""
         }
         this.onChangeLogin = this.onChangeLogin.bind(this);
@@ -22,18 +22,23 @@ class Login extends Component {
         e.preventDefault();
         console.log("in submit")
         const loginData = {
-            Email : this.state.email,
+            Username : this.state.uname,
             Password : this.state.password
         }
+        const headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': 'http://localhost:3000',
+            'Access-Control-Allow-Credentials': true
+        }
         try{
-            axios.defaults.withCredentials = false;
-            const connectionReqResponse = await axios.post('http://login-env.u67gpznbsg.us-east-1.elasticbeanstalk.com/login', loginData)
+            //axios.defaults.withCredentials = false;
+            const connectionReqResponse = await axios.post('http://localhost:3000/login')
             if (connectionReqResponse.status === 201){
                 alert("Login successful!");
                 let user = {
-                    email:connectionReqResponse.data.email,
+                    //email:connectionReqResponse.data.email,
                     id: connectionReqResponse.data.id,
-                    name: connectionReqResponse.data.username
+                    name: connectionReqResponse.data.uname
                 };
                 localStorage.setItem('user', JSON.stringify(user));
                 this.props.history.push("/locations");
@@ -60,10 +65,10 @@ class Login extends Component {
                     <center>Don't have an account?<Link to="/signup"> Sign Up Now!</Link> </center>
                     <form onSubmit = {this.onSubmit}>
                         <div className = "signUpDiv">
-                            <label for="email" className="signUpLabel">
-                                Email Id or Username
+                            <label for="uname" className="signUpLabel">
+                                Username
                             </label>
-                            <input type="text" name = "email" onChange = {this.onChangeLogin} class="signUpInput"/>
+                            <input type="text" name = "uname" onChange = {this.onChangeLogin} class="signUpInput"/>
                         </div>
 
                         <div className = "signUpDiv">
