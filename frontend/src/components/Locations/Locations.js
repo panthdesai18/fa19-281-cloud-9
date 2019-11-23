@@ -26,7 +26,7 @@ class Locations extends Component {
         e.preventDefault();
         const locationData = this.state.location
         try{
-            const connectionReqResponse = await axios.get(`http://localhost:3000/locations/zipcode/${locationData}`)
+            const connectionReqResponse = await axios.get(`https://gevnsiba07.execute-api.us-east-1.amazonaws.com/prod/position/locations/zipcode/${locationData}`)
             console.log("checkpoint")
             console.log(connectionReqResponse.data)
             if (connectionReqResponse.data === null) {
@@ -58,7 +58,7 @@ class Locations extends Component {
     render(){
         let redirectVar = null;
         //localStorage.setItem("user","ramya")
-        if(!localStorage.getItem("user")){
+        if(!localStorage.getItem("id")){
             redirectVar = <Redirect to= "/login"/>
         }
         if (this.state.locationInfo.length > 0) {

@@ -20,14 +20,16 @@ class Pastorders extends Component {
 
     componentDidMount(){
     
-        axios.get('http://a9bdd7cf00d1911ea85f50e68d07da0d-1018085420.us-east-1.elb.amazonaws.com/orders')
+        console.log("Inside past order didmount")
+        var userid = localStorage.getItem("id");
+        axios.get(`https://gevnsiba07.execute-api.us-east-1.amazonaws.com/prod/ordermanagement/getUserOrder/${userid}`)
                 .then((response) => {
                 //update the state with the response data
+                console.log(response.data)
                 this.setState({
                     orders : response.data
                 });
-                console.log(response.data)
-                console.log(this.state.orders)
+                
             });
     }
 

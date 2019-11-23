@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import counterburgersymbol from './counterburgersymbol.png';
-import cbsymbol from './cbsymbol.jpg';
+import cbsymbol from './symbol.jpg';
 import burgerdetails from './burgerdetails.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -10,8 +10,7 @@ import './Menu.css';
 import { Card } from 'antd';
 //const { Meta } = Card;
 var swal = require('sweetalert')
-var hostname = 'http://18.206.192.130:12345/items'
-var hostnameOrder = 'http://kong-elb-234657806.us-west-1.elb.amazonaws.com:80/order/order'
+var hostname = 'https://gevnsiba07.execute-api.us-east-1.amazonaws.com/prod/menu/items'
 class Menu extends Component {
 
     constructor(props) {
@@ -23,7 +22,8 @@ class Menu extends Component {
             price: "",
             item:[],
             total : 0,
-            itemname: []
+            itemname: [],
+            message: ""
         }
         this.handleclick = this.handleclick.bind(this);
        
@@ -35,6 +35,7 @@ class Menu extends Component {
          console.log(this.state.item)
         this.state.itemdetail.push(this.state.item);
         this.state.itemname.push(name);
+       this.setState({message: "Item added successfully!"})
         console.log("state",this.state.itemdetail, this.state.total, this.state.itemname)
     }
 
@@ -67,6 +68,7 @@ class Menu extends Component {
                     >
                         <div className="ItemDescription">
                             <br></br>
+                            <div style={{color: "blue"}}> {this.state.message} </div>
                             <p><b>Item Type : </b>{wholemenu.ItemType}</p>
                             <p><b>Item Name : </b>{wholemenu.ItemName}</p>
                             <p><b>Description :</b> {wholemenu.Description}</p>
@@ -107,9 +109,10 @@ class Menu extends Component {
                         </div>
                         <div className="container MenuOustide">
                             <div className="storedetails">
+                            
                                 &nbsp;&nbsp; <b style={{ "font-size": "40px", "font-weight": "800", marginBottom: "0px" }}>THE COUNTER</b>
                                 <br></br>
-                                &nbsp;&nbsp; <Link to="/locations">Change Location</Link>
+                                &nbsp;&nbsp; <Link to="/location">Change Location</Link>
                                 <br></br>
                                 <p>&nbsp;&nbsp; Phone: (408) 423-9200</p>
                                 <p> &nbsp;&nbsp; Pickup Hours: Open today 11am-10pm </p>

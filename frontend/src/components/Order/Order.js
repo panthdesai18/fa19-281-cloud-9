@@ -40,27 +40,30 @@ class Order extends Component {
         try{
             var total1 = this.state.total_amount;
             var total2 = total1.toString();
-         const data = {
-            UserId:"7",
-            OrderStatus:"placed",
-            Items: this.state.names,
-            TotalAmount: total2,
-         }
+            const data = {
+                UserId:localStorage.getItem("id"),
+                OrderStatus:"placed",
+                Items: this.state.names,
+                TotalAmount: total2,
+            }
          console.log("Data : ",data);
          //set the with credentials to true
          axios.defaults.withCredentials = false;
          //make a post request with the user data
-         axios.post('http://a9bdd7cf00d1911ea85f50e68d07da0d-1018085420.us-east-1.elb.amazonaws.com/placeOrder', data)
+         axios.post('https://gevnsiba07.execute-api.us-east-1.amazonaws.com/prod/ordermanagement/placeOrder', data)
              .then((response) => {
                  console.log("Status Code : ", response);
+                 let redirectVar = null;
                  if (response.status == 200) {
                      this.setState({
-                         authFlag: true
+                         authFlag: true,
+                         message: "Your order is successfully placed!"
                      })
                  }
                  else if (response.status == 201) {
                      this.setState({
                          authFlag: false,
+                         message:""
                      })
                  }
              }
@@ -108,7 +111,9 @@ class Order extends Component {
                     <Link to="/pastorders" style={{"font-size": "20px", "font-weight" : "800" , marginLeft: "20px","color":"black", "background-color": "white"  }}>PAST ORDERS</Link>
                     </div>
                 <div class="ml-5">
+                <div>{this.state.message}</div>
                 <h1 className="cart">Your Order Cart:</h1>
+                <div>hey</div>
                 {details}
                 </div>
                 <h3>Total Amount: <span className="price" >${this.state.total_amount}</span></h3>

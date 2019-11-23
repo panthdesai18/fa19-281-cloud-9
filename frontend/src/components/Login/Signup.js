@@ -25,17 +25,22 @@ class SignUp extends Component {
     async onSubmit(e){
         e.preventDefault();
         const signUpData = {
-            Username: this.state.uname,
-            Fullname: this.state.fname,
-            Emailid : this.state.email,
-            Password : this.state.password
+            username: this.state.uname,
+            fullname: this.state.fname,
+            emailid : this.state.email,
+            password : this.state.password
         }
         try{
-            axios.defaults.withCredentials = false;
             const connectionReqResponse = await axios.post('http://login-env.u67gpznbsg.us-east-1.elasticbeanstalk.com/signup', signUpData)
-            if (connectionReqResponse.status === 201){
-                alert("User has been successfully created!");
-                this.props.history.push("/login");
+            console.log(connectionReqResponse)
+            if (connectionReqResponse.status === 200){
+                if(connectionReqResponse.data.result == "User already Exists!!"){
+                    alert(connectionReqResponse.data.result)    
+                }else{
+                    alert("User has been successfully created!");
+                    this.props.history.push("/login");
+                }
+                
             }
         } catch(err) {
             if (err.response.status === 409){
@@ -53,7 +58,7 @@ class SignUp extends Component {
                 </div>
 
                 <div className="signupbox">
-                    <h1 className = "signupheading">SIGNUP</h1>
+                    <h1 className = "signupheading">CREATE ACCOUNT</h1>
                     <center>Already have an account? <Link to="/login"> LOGIN!</Link></center>
                     <form onSubmit = {this.onSubmit}>
                         <div className = "signUpDiv">
@@ -71,7 +76,7 @@ class SignUp extends Component {
                         </div>
 
                         <div className = "signUpDiv">
-                            <label for="email" className="signUpLabel">
+                            <label for="emailid" className="signUpLabel">
                                 EMAIL ID
                             </label>
                             <input type="text" name = "email" onChange = {this.onChangeSignUp} className="signUpInput" placeholder="Email id"required/>
@@ -85,7 +90,7 @@ class SignUp extends Component {
                         </div>
 
                         <div className = "signUpDiv">
-                            <input type="submit" className="signUpButton" value="Sign Up"/>
+                            <input type="submit" className="signUpButton" value="Create Account"/>
                         </div>
                     </form>
                 </div>

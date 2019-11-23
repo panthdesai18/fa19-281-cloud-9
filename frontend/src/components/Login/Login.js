@@ -25,23 +25,22 @@ class Login extends Component {
             Username : this.state.uname,
             Password : this.state.password
         }
-        const headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'http://localhost:3000',
-            'Access-Control-Allow-Credentials': true
-        }
+        console.log(loginData);
+
         try{
-            //axios.defaults.withCredentials = false;
-            const connectionReqResponse = await axios.post('http://localhost:3000/login')
-            if (connectionReqResponse.status === 201){
-                alert("Login successful!");
-                let user = {
-                    //email:connectionReqResponse.data.email,
-                    id: connectionReqResponse.data.id,
-                    name: connectionReqResponse.data.uname
-                };
-                localStorage.setItem('user', JSON.stringify(user));
-                this.props.history.push("/locations");
+            const connectionReqResponse = await axios.post('https://gevnsiba07.execute-api.us-east-1.amazonaws.com/prod/usermanagement/login', loginData)
+            console.log(connectionReqResponse);
+            if (connectionReqResponse.status === 200){
+                if(connectionReqResponse.data.error){
+                    alert(connectionReqResponse.data.error)
+                }else{
+                    alert("Login successful!"); 
+                    localStorage.setItem('username', connectionReqResponse.data.username);
+                    localStorage.setItem('id', connectionReqResponse.data.username)
+                    localStorage.setItem('name', connectionReqResponse.data.fullname)
+                    this.props.history.push("/location");
+                }
+                
             }
         }
         catch(err) {
@@ -62,10 +61,10 @@ class Login extends Component {
 
                 <div className="loginbox">
                     <h1 className = "signupheading">LOGIN</h1>
-                    <center>Don't have an account?<Link to="/signup"> Sign Up Now!</Link> </center>
+                    <center>Don't have an account?<Link to="/signup"> Create One!</Link> </center>
                     <form onSubmit = {this.onSubmit}>
                         <div className = "signUpDiv">
-                            <label for="uname" className="signUpLabel">
+                            <label for="email" className="signUpLabel">
                                 Username
                             </label>
                             <input type="text" name = "uname" onChange = {this.onChangeLogin} class="signUpInput"/>
