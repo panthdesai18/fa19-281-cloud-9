@@ -11,7 +11,7 @@ class SignUp extends Component {
         this.state = {
             uname : "",
             fname : "",
-            emailid : "",
+            email : "",
             password : ""
         }
         this.onChangeSignUp = this.onChangeSignUp.bind(this);
@@ -27,7 +27,7 @@ class SignUp extends Component {
         const signUpData = {
             Username: this.state.uname,
             Fullname: this.state.fname,
-            Emailid : this.state.emailid,
+            Emailid : this.state.email,
             Password : this.state.password
         }
         try{
@@ -71,10 +71,10 @@ class SignUp extends Component {
                         </div>
 
                         <div className = "signUpDiv">
-                            <label for="emailid" className="signUpLabel">
+                            <label for="email" className="signUpLabel">
                                 EMAIL ID
                             </label>
-                            <input type="email" name = "emailid" onChange = {this.onChangeSignUp} className="signUpInput" placeholder="Email id"required/>
+                            <input type="text" name = "email" onChange = {this.onChangeSignUp} className="signUpInput" placeholder="Email id"required/>
                         </div>
 
                         <div className = "signUpDiv">

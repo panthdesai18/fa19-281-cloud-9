@@ -17,6 +17,8 @@ func main() {
 		Methods("POST")
 	r.HandleFunc("/login", server.LoginHandler).
 		Methods("POST")
+	r.HandleFunc("/adminlogin", server.LoginHandler).
+		Methods("POST")
 	r.HandleFunc("/users", server.GetAllUsers(formatter)).
 		Methods("GET")
 	r.HandleFunc("/user/{username}", server.GetOneUser(formatter)).
@@ -26,5 +28,5 @@ func main() {
 	r.HandleFunc("/user/{username}", server.DeleteAUser).
 		Methods("DELETE")
 
-	log.Fatal(http.ListenAndServe(":8080", r))
+	log.Fatal(http.ListenAndServe(":3000", r))
 }
