@@ -64,7 +64,6 @@ GOAPI works as microservies.
 * Frontend for signup and login.
 * Deployed user microservice in 3 docker containers.
 * Mongo Cluster with master and slave nodes.
-* Deployed Frontend in Heroku.
 * Schema Planning 
  
 ### Ramya Bandi:
