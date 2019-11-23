@@ -43,4 +43,8 @@ each record. We had shared mongo cluster to partition data.
 
 <br/>
 
-## Team Contribution:
+### Load Balancer:
+Load balancer is used to distribute traffic of User microservice to scale application horizontally.
+
+### Amazon API Gateway:
+Amazon API Gateway is used to redirect request from user to different microservices. It enables user to retrieve data from mutiple microservices within single round trip.

@@ -140,3 +140,111 @@
         "phone": "1234567890",
         "email": "abc@gmail.com"
         }
+
+* ### Login Service:
+
+* #### Post/signup
+        
+        Post API for signup
+        Accept: application/json
+        
+        Body:
+        {
+	    "username" : "nivali",
+        "fullname" : "Nivali",
+        "emailid" : "nivali@gmail.com",
+        "password" : "Abc@123"
+        }
+
+        Response:
+        {
+        "error": "",
+        "result": "Signup Successful"
+        }
+        - 200 created
+        - 400 Invalid request
+
+ * #### Post/login
+        
+        Post API for login
+        Accept: application/json
+        
+        Body:
+        {
+        “username” : “nivali”,
+        “Password” : “Abc@123”
+        }
+        Response:
+        {
+        "username": "nivali",
+        "fullname": "Nivali",
+        "emailid": "nivali@gmail.com",
+        "password": ""
+        }
+        or
+        {
+        "error": "Invalid password",
+        "result": ""
+        }
+
+        - 200 created
+        - 400 Invalid Request
+
+* #### Get/users
+        
+        Get API for users
+        Accept: application/json
+        
+        Response:
+        [
+        {
+        "username": "ramyareddy",
+        "fullname": "Ramya Reddy",
+        "emailid": "ramyareddy@gmail.com",
+    "password": "$2a$05$1c5jkWJT1qw5jc8Shnx81.i1mHKsfAEAMU2LMjqwSbRoNFRka0xVO"
+        },
+        {
+        "username": "dhanasreeare",
+        "fullname": "Dhanasree Are",
+        "emailid": "dhanasreeare@gmail.com",
+        "password": "$2a$05$Ht41/       sMHKhNDC6.cgYBL0eleRtYiYGD3p5UU0Rz0z6reEkGm7DCJa"
+        },
+        {    
+        "username": "nivalireddy",
+        "fullname": "Nivali Reddy",
+        "emailid": "nivalireddy@gmail.com",
+    "password": "$2a$05$NHkyYKCivJT2XvOJ080bPeuCxxecsnkSSW7yCS6zeryEd/1JBpy0W"
+        }
+        ]
+
+        
+ * #### Get API for user/{username}
+
+        
+        GET A Location by user/{username}
+        Accept: application/json
+        
+        Response:
+        {
+        "username": "ramya",
+        "fullname": "Ramya",
+        "emailid": "ramya@gmail.com",
+        "password": ""
+        }
+
+* #### Get API for user/{email}
+  Accept: application/json
+
+        Response:
+        {
+        "username": "ramya",
+        "fullname": "Ramya",
+        "emailid": "ramya@gmail.com",
+        "password": ""
+        }
+
+* #### Delete API for user/{username}
+  Accept: application/json
+  
+        Response:
+        {"error":"","result":"User deleted successfully"}
