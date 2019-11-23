@@ -234,10 +234,6 @@
         {"error":"","result":"User deleted successfully"}
 
 * ### Order Service:
-placeOrder/Post
-orders/GET
-getUserOrder/GET
-removeOrder/DELETE
 
 * #### POST/placeOrder
         
