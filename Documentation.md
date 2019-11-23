@@ -1,5 +1,5 @@
 # CMPE - 281 Team Hackathon Project
-# QuizzBox
+# Burger Point
 ## Team Members:
 * ### Panth Desai
 * ### Udit Marolia
@@ -13,8 +13,7 @@
 ## Description:
 
 ### BurgerPoint:  
-BurgerPoint is an interactive platform for ordering burgers. It has a login user who will create a order and then he can review the order by 
-looking at the cart and then place the order. The admin can add and delete the items from the backend. No user iterface has been provided for it.
+BurgerPoint is an interactive platform for ordering burgers. It has a login user who will create an order and then he can review the order by looking at the cart and then place the order. The user can also view available outlets based on their zipcode. The admin can add and delete the items from the backend. No user iterface has been provided for it.
 The BurgerPoint will be very helpful to users to place orders.
 
 
@@ -25,7 +24,7 @@ interact with microservices.
 
 <br/>
 
-## AFK Scale Cube:
+## AKF Scale Cube:
 
 #### Figure:
 
