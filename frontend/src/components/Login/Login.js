@@ -26,6 +26,7 @@ class Login extends Component {
             Password : this.state.password
         }
         try{
+            axios.defaults.withCredentials = false;
             const connectionReqResponse = await axios.post('http://login-env.u67gpznbsg.us-east-1.elasticbeanstalk.com/login', loginData)
             if (connectionReqResponse.status === 201){
                 alert("Login successful!");
