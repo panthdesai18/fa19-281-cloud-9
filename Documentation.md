@@ -41,8 +41,21 @@ each record. We had sharded mongo cluster to partition data.
 
 <br/>
 
+### GoAPI: 
+GOAPI works as microservies. 
+  * Login GoAPI: Login and signup user to build order
+  * Location GoAPI: To select the location and get the nearest restaurants based on that.
+  * Menu GoAPI: List all the menu items for the user to build order.
+  * Order GoAPI: Order will be placed and the past orders of the same users can be viewed.
+
 ### Load Balancer:
 Load balancer is used to distribute traffic of User microservice to scale application horizontally.
 
 ### Amazon API Gateway:
 Amazon API Gateway is used to redirect request from user to different microservices. It enables user to retrieve data from mutiple microservices within single round trip.
+
+### Mongo Shard Clusters:
+We have 2 mongo shard cluster. Menu and order are using one mongo shard clusters. Every mongo shard cluster
+has replica set of 1 mongos, 2 config server, 2 shard cluster with with 3 nodes each. This will help in data partition.
+
+
