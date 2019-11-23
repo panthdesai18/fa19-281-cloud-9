@@ -160,6 +160,20 @@ func setupResponse(w *http.ResponseWriter, req *http.Request) {
 	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS")
 	(*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }
+
+type ZipCodesResponse struct {
+	Zip_codes []string `json:"zip_codes"`
+}
+
+func getZipCodes(body []byte) (*ZipCodesResponse, error) {
+	var zip = new(ZipCodesResponse)
+	err := json.Unmarshal(body, &zip)
+	if(err != nil){
+		fmt.Println("error:", err)
+	}
+	return zip, err
+}
+
 func GetLocationsByZipcodeHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var res model.ResponseResult
@@ -174,15 +188,53 @@ func GetLocationsByZipcodeHandler(formatter *render.Render) http.HandlerFunc {
 		}
 
 		zipcode := mux.Vars(r)["zipcode"]
+		resp, err := http.Get("https://www.zipcodeapi.com/rest/gZA5DC6sorrMU4qOSdSCXqjuB2ixwXPl6ERebFAVHMbf3Vy9KetjLrYnr6qo6qY6/radius.json/"+ zipcode +"/1/miles?minimal")
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+
+		log.Println(string(body))
+		s, err := getZipCodes([]byte(body))
+
+		fmt.Println(s.Zip_codes)
+		if len(s.Zip_codes) > 0 {
+			for index, each := range s.Zip_codes {
+				fmt.Printf("Zip code [%d] is [%s]\n", index, each)
+				cursor, err := collection.Find(context.TODO(), bson.D{{"zipcode", each}})
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				for cursor.Next(context.TODO()) {
+					var result model.Location
+					err := cursor.Decode(&result)
+					if err != nil {
+						log.Fatal(err)
+					}
+					results = append(results, &result)
+					fmt.Println(result)
+				}
+			}
+		} else {
 		cursor, err := collection.Find(context.TODO(), bson.D{{"zipcode", zipcode}})
-		for cursor.Next(context.TODO()) {
-			var result model.Location
-			err := cursor.Decode(&result)
 			if err != nil {
 				log.Fatal(err)
 			}
-			results = append(results, &result)
-			fmt.Println(result)
+			for cursor.Next(context.TODO()) {
+				var result model.Location
+				err := cursor.Decode(&result)
+				if err != nil {
+					log.Fatal(err)
+				}
+				results = append(results, &result)
+				fmt.Println(result)
+			}
 		}
 
 		fmt.Printf("Found multiple documents (array of pointers): %+v\n", results)
