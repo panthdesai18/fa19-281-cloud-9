@@ -24,7 +24,7 @@ interact with microservices.
 
 <br/>
 
-## AKF Scale Cube:
+## AFK Scale Cube:
 
 #### Figure:
 
