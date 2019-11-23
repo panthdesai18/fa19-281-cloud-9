@@ -51,10 +51,10 @@ Amazon API Gateway is used to redirect request from user to different microservi
 
 ### GoAPI: 
 GOAPI works as microservies. 
-  * : Login and signup user to attempt quiz.
-  * Quiz GoAPI: Provides quiz, score quiz and create score board.
-  * Assignment: Provides assignement, review assignment and list assignment.
-  * Admin: Creates quiz and assignment and stores answers and questions.
+  * : Login and signup user to access the system of burger point.
+  * Location API- to select the nearest location of the restraurant from the user.
+  * Menu API- The normal user can use the API to get MENU Items while admin user can add, delete menu items as well.
+  * Order API - The normal user can use this api to place any order as well as fetch it while admin user can view all the         orders and even delete a past order 
   * Payments: 
 
   ## Team Contribution:
