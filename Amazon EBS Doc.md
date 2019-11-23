@@ -1,6 +1,6 @@
 ## Amazon Elastic Beanstalk Documentation:
 
-* I have used Amazon's Elastic BeanStalk to deploy my login and location backend.
+* Amazon's Elastic BeanStalk is used to deploy the login and location backend.
 
 ### Refrence Link: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
 
