@@ -109,7 +109,7 @@ class Menu extends Component {
                             <div className="storedetails">
                                 &nbsp;&nbsp; <b style={{ "font-size": "40px", "font-weight": "800", marginBottom: "0px" }}>THE COUNTER</b>
                                 <br></br>
-                                &nbsp;&nbsp; <Link to="/location">Change Location</Link>
+                                &nbsp;&nbsp; <Link to="/locations">Change Location</Link>
                                 <br></br>
                                 <p>&nbsp;&nbsp; Phone: (408) 423-9200</p>
                                 <p> &nbsp;&nbsp; Pickup Hours: Open today 11am-10pm </p>

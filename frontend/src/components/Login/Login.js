@@ -35,7 +35,7 @@ class Login extends Component {
                     name: connectionReqResponse.data.username
                 };
                 localStorage.setItem('user', JSON.stringify(user));
-                this.props.history.push("/location");
+                this.props.history.push("/locations");
             }
         }
         catch(err) {

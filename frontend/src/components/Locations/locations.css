@@ -1,0 +1,98 @@
+.searchButton {
+    box-shadow:inset 0px 1px 0px 0px #efdcfb;
+    background:linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+    background-color:#dfbdfa;
+    border-radius:6px;
+    border:1px solid #c584f3;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:6px 24px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #9752cc;
+}
+.searchButton:hover {
+    background:linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
+    background-color:#bc80ea;
+}
+.searchButton:active {
+    position:relative;
+    top:1px;
+}
+
+
+#zipText {
+    border: 3px solid rgba(204,63,197,0.7);
+    width: 40%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+}
+.headFont {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #079091;
+    font-weight: 700;
+    text-decoration: underline solid rgb(68, 68, 68);
+    font-style: italic;
+    font-variant: small-caps;
+    text-transform: capitalize;
+}
+.myButton {
+    box-shadow: 0px 10px 14px -7px #276873;
+    background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+    background-color:#599bb3;
+    border-radius:8px;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:20px;
+    font-weight:bold;
+    padding:13px 32px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3d768a;
+}
+.myButton:hover {
+    background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+    background-color:#408c99;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+#borderDemo {
+    border: 5px outset rgba(17,143,164,0.25);
+    border-radius: 30px 29px 31px 30px;
+}
+
+#Logo {
+    background-position: 0px 0px;
+    box-sizing: border-box;
+    color: rgb(31, 114, 53);
+    display: block;
+    float: left;
+    height: 82px;
+    text-decoration: none solid rgb(27, 114, 47);
+    text-size-adjust: 100%;
+    width: 157px;
+    column-rule-color: rgb(23, 114, 39);
+    perspective-origin: 78.5px 41px;
+    transform-origin: 78.5px 41px;
+    caret-color: rgb(27, 114, 57);
+    background: rgba(0, 0, 0, 0) url("https://static.olocdn.net/img/thecounter/logo_2.png") no-repeat scroll 0px 0px / contain padding-box border-box;
+    border: 0px none rgb(26, 114, 36);
+    font: normal normal 400 normal 18px / normal ropa_sansregular;
+    margin: 15px 20px;
+    outline: rgb(20, 114, 16) none 0px;
+}
