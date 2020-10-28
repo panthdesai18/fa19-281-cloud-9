@@ -2,7 +2,7 @@
 
 * Amazon's Elastic BeanStalk is used to deploy the login and location backend.
 
-### Refrence Link: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
+### Reference Link: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
 
 ### Below are the steps for BeanStalk deployment:
 
